@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete UI</title>
+    <link rel="stylesheet" href="./Project_Part_2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Project_Part_2/css/style.css">
+</head>
+<body>
+  
+    <div class="container" id="conatiner">
+      
+        <section id="s_1" class="pb-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p class="p_s">Display Color</p>
+                </div>
+                <div>
+                    <p class=" p_s pointer p-1 rounded-1 " id="change_color">Random Color</p>
+                </div>
+            </div>
+            <div class="display_color" id="display_color"></div>
+        </section>
+        <section id="s_2" class="d-flex justify-content-between align-content-center  border-bottom">
+            <div>
+                <p class="p_s">Change & Copy Color</p>
+            </div>
+            <div>
+                <button class="border-0 btn-outline-0 bg-transparent text-danger p_s" id="copyButton">Copy to Clipboard</button >
+            </div>
+        </section>
+        <section id="s_3" class="d-flex justify-content-between py-1 border-bottom">
+            <div>
+                <p class="p_s">Select Copy Mode</p>
+            </div>
+            <div >
+                
+                <input type="checkbox" name="" id="check_hex_code" value="hex" ><span class="checkbox_label "> HEX</span>
+                <input type="checkbox" name="" id="check_rgb_code" value="rgb"> <span class="checkbox_label">RGB</span>
+            </div>
+        </section>
+        <section id="s_4" class="d-flex justify-content-between align-content-center py-3 gap-2 border-bottom">
+            <div class="input_box">
+                <div class="hex_input text-center position-relative">
+                    <label for="" class="p_s">HEX</label><br>
+                    <input type="text" maxlength="6" aria-label="First name" class="form-control"  id="hex_input_box">
+                </div>
+            </div>
+            <div class="input_box text-center">
+                <label for="" class="p_s">RGB</label><br>
+                <input type="text" aria-label="First name" readonly class="form-control" id="rgb_input_box">
+            </div>
+        </section>
+
+        <section id="s_5">
+            <div><p class="p_s">Adjust RGB Color</p></div>
+            <div class="d-flex justify-content-between align-items-center gap-2">
+                <div>
+                    <div class="d-flex justify-content-between px-2">
+                        <label for="" class="p_s">Red</label>
+                        <label for="" class="p_s" id="redRange">0</label>
+                    </div>
+                    <input type="range" class="form-range" min="0" max="255" id="customRange_1">
+                </div>
+                <div>
+                    <div class="d-flex justify-content-between px-2">
+                        <label for="" class="p_s">Green</label>
+                        <label for="" class="p_s" id="greenRange">0</label>
+                    </div>
+                    <input type="range" class="form-range" min="0" max="255" id="customRange_2">
+                   
+                </div>
+                <div>
+                    <div class="d-flex justify-content-between px-2">
+                        <label for="" class="p_s">Blue</label>
+                        <label for="" class="p_s" id="blueRange">0</label>
+                    </div>
+                    <input type="range" class="form-range" min="0" max="255" id="customRange_3">
+                </div>
+     
+             
+            </div>
+        </section>
+    </div>
+ 
+
+    
+
+
+
+    <script src="./Project_Part_2/js/jquery-3.7.1.min.js"></script>
+    <script src="./Project_Part_2/js/bootstrap.bundle.min.js"></script>
+    <script src="./Project_Part_2/js/app.js"></script>
+</body>
+</html>
