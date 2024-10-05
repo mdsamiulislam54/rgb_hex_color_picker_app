@@ -14,6 +14,23 @@ let customRange_3 = document.getElementById('customRange_3');
 
 
 //ALL ref=========end====
+window.onload= function(){
+   
+    let red = 255;
+    let green = 215;
+    let blue = 0;
+
+    let rgbolor_defult = `rgb(${red},${green},${blue})`
+    display_color.style.backgroundColor=rgbolor_defult
+    //defaul hex_input_box color code update
+    hex_input_box.value= hexColorGenerateFunc({red,green,blue}).substring(1)
+    rgb_input_box.value=rgbolor_defult
+    redRange.innerText=red
+    greenRange.innerText=green
+    blueRange.innerText=blue
+  
+
+}
 
 
 //ALL funtion =================start=========================
