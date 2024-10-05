@@ -71,6 +71,7 @@ function updateBackgroundColor(){
     display_color.style.backgroundColor=rgbColor;
     hex_input_box.value = hexColorGenerateFunc({ red: parseInt(red), green: parseInt(green), blue: parseInt(blue) }).substring(1);
     rgb_input_box.value = rgbColor;
+    //range lebel value update
     redRange.innerText = red;
     greenRange.innerText = green;
     blueRange.innerText = blue;
@@ -99,6 +100,9 @@ change_color_btn.addEventListener('click',()=>{
     greenRange.style.color =rgbColor
     blueRange.style.color =rgbColor
     //rang color change
+    customRange_1.value=color.red
+    customRange_2.value=color.green
+    customRange_3.value=color.blue
   
 
     
@@ -181,7 +185,7 @@ customRange_3.addEventListener('input', updateBackgroundColor);
 //hex color check function===start======
 
 function isValid (color){
-
-    return /^#[0-9A-Fa-f]{6}$/.test(color);
+    if(color.length !==6) return false
+    return /^[0-9A-Fa-f]{6}$/.test(color);
 }
 //hex color check function===end======

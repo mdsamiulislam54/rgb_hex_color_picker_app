@@ -18,6 +18,8 @@ body{
     padding: 10px;
     position: relative;
     overflow: hidden;
+
+    padding-bottom:100px ;
 }
 .display_color{
     width: 100%;
@@ -77,6 +79,12 @@ body{
     
 
 }
+.rang_input input[type="range"]{
+  width: 100%;
+  background-color: red;
+}
+   
+
 .toast_message_slide_in{
     animation: in 0.3s ease-in-out;
 }
@@ -104,3 +112,35 @@ body{
         opacity: 0;
     }
 }
+
+.progress_bar{
+    width: 100%;
+
+}
+
+/* Styles for the thumb (the draggable part of the range input) */
+input[type="range"]::-moz-range-thumb {
+    --webkit-appearance: none; /* Override default styling */
+    appearance: none;
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #fff; /* White thumb */
+    border: 3px solid navy; /* Blue border for the thumb */
+    border-radius: 50%; /* Round thumb */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-progress {
+    padding: 5px 0px;
+    background: linear-gradient(35deg,red,green,blue); 
+    
+    border-radius: 10px; 
+    cursor: pointer; 
+}
+
+/* Styling for the track in Firefox */
+input[type="range"]::-moz-range-track {
+    background: #ddd; /* Default track color */
+}
+
