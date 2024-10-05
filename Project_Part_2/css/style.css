@@ -144,3 +144,36 @@ input[type="range"]::-moz-range-track {
     background: #ddd; /* Default track color */
 }
 
+
+#check_hex_code {
+    width: 15px;
+    height:15px;
+    background-color: inherit;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid #000;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#check_hex_code:checked {
+    background-color: greenyellow;
+}
+#check_rgb_code {
+    width: 15px;
+    height:15px;
+    background-color: inherit;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid #000;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#check_rgb_code:checked {
+    background-color: greenyellow;
+}

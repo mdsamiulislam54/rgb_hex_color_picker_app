@@ -90,7 +90,7 @@ change_color_btn.addEventListener('click',()=>{
     
     display_color.style.backgroundColor=`rgb(${color.red},${color.green},${color.blue})`
     hex_input_box.value=hexColor.substring(1)
-    rgb_input_box.value=`rgb(${rgbColor})`
+    rgb_input_box.value=rgbColor
     //lebel range value update===
     redRange.innerText=color.red
     greenRange.innerText=color.green
