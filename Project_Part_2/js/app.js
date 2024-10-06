@@ -11,6 +11,16 @@ let customRange_1 = document.getElementById('customRange_1');
 let customRange_2 = document.getElementById('customRange_2');
 let customRange_3 = document.getElementById('customRange_3');
 let parent_preset_box= document.getElementById('parent_preset_box')
+let parent_custom_color= document.getElementById('parent_custom_color')
+let saveButton= document.getElementById('saveButton')
+const deleteButton = document.getElementById('deleteButton');
+const preview_background = document.getElementById('preview_background');
+const file_pop = document.getElementById('file_pop');
+const upload_button = document.getElementById('upload_button');
+const background_img_delete_button = document.getElementById('delete_button');
+const body_section = document.getElementById('body_section');
+const background_control = document.getElementById('background_control');
+
 
 
 
@@ -34,6 +44,9 @@ window.onload= function(){
 
 
     presetBoxGenerate(parent_preset_box,hexColors)
+
+    //localstroage function call
+ 
   
 
 }
@@ -178,6 +191,10 @@ copyButton.addEventListener('click', () => {
         alert('Please select a checkbox.');
        
     }
+
+    copySound.currentTime=0
+    copySound.volume=0.5
+    copySound.play()
 });
 
 //copy button function // color code copy=======end====
@@ -223,6 +240,8 @@ customRange_1.addEventListener('input', updateBackgroundColor);
 customRange_2.addEventListener('input', updateBackgroundColor);
 customRange_3.addEventListener('input', updateBackgroundColor);
 
+
+
 //hex color check function===start======
 
 function isValid (color){
@@ -261,6 +280,9 @@ function presetColorBoxGenerate(color){
     div.addEventListener('click',()=>{
         presetColorCodeCopy(color)
         toastMessage(color.slice(2))
+        display_color.style.backgroundColor=color
+      
+       
         copySound.currentTime=0
         copySound.volume=0.5
         copySound.play()
@@ -293,6 +315,112 @@ function presetColorCodeCopy(color){
     
     
 }
+
+const customColors =[];
+
+saveButton.addEventListener('click',function(){
+    let newColor=(`#${hex_input_box.value}`)
+    let maxColor = 18;
+   
+    if(!customColors.includes(newColor)){
+        if(customColors.length < maxColor){
+            customColors.unshift(newColor)
+            localStorage.setItem('customColor', JSON.stringify(customColors));
+            while (parent_custom_color.firstChild) {
+                parent_custom_color.removeChild(parent_custom_color.lastChild);
+              }
+            presetBoxGenerate(parent_custom_color,customColors)
+        }else{
+            alert('Maximum of 18 colors can be added.');
+        }
+       
+       
+    }else{
+        alert('This color is already added.');
+    };
+    copySound.currentTime=0
+    copySound.volume=0.5
+    copySound.play()
+    
+})
+
+// Delete button event listener
+deleteButton.addEventListener('click', function() {
+
+    if (customColors.length > 0) {
+        customColors.shift(); // Remove the last color from the array
+        localStorage.setItem('customColor', JSON.stringify(customColors));
+        // Clear existing elements before regenerating
+        while (parent_custom_color.firstChild) {
+            parent_custom_color.removeChild(parent_custom_color.firstChild);
+        }
+        presetBoxGenerate(parent_custom_color, customColors); // Update the display
+    } else {
+        alert('No colors to delete.');
+    }
+    copySound.currentTime=0
+    copySound.volume=0.5
+    copySound.play()
+});
+
+//custom color stroage 
+const customColorsStroage = localStorage.getItem('customColor')
+const customColorarry = JSON.parse(customColorsStroage)
+ presetBoxGenerate(document.getElementById('parent_custom_color'), customColorarry)
+
+
+ /**
+  * background imge preview function
+  */
+
+ upload_button.addEventListener('click',()=>{
+    file_pop.click()
+    copySound.currentTime=0
+    copySound.volume=0.5
+    copySound.play()
+ })
+
+ file_pop.addEventListener('change',function(event){
+    const file= event.target.files[0];
+   if(file){
+    const imageUrl = URL.createObjectURL(file)
+    preview_background.style.background=`url(${imageUrl})`
+    body_section.style.backgroundImage=`url(${imageUrl})`
+    background_img_delete_button.style.display='block'
+    background_control.style.display='block'
+
+    
+    //background image delete=================
+    background_img_delete_button.addEventListener('click',()=>{
+        preview_background.style.background=''
+        body_section.style.background=''
+         background_img_delete_button.style.display='none'
+         background_control.style.display='none'
+         copySound.currentTime=0
+    copySound.volume=0.5
+    copySound.play()
+        
+    })
+   }
+    
+ })
+
+ //background image controler function==============
+ function backgroundImageControl(){
+    body_section.style.backgroundSize = document.getElementById('bg_size').value;
+    body_section.style.backgroundPosition = document.getElementById('bg_position').value;
+    body_section.style.backgroundRepeat = document.getElementById('bg_repeat').value;
+    body_section.style.backgroundAttachment = document.getElementById('bg_attachment').value;
+    preview_background.style.backgroundSize = document.getElementById('bg_size').value;
+    preview_background.style.backgroundPosition = document.getElementById('bg_position').value;
+    preview_background.style.backgroundRepeat = document.getElementById('bg_repeat').value;
+   
+ }
+ document.getElementById('bg_size').addEventListener('change', backgroundImageControl)
+document.getElementById('bg_position').addEventListener('change', backgroundImageControl)
+document.getElementById('bg_repeat').addEventListener('change', backgroundImageControl)
+document.getElementById('bg_attachment').addEventListener('change', backgroundImageControl)
+
 
 
 

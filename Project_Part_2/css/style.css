@@ -7,8 +7,9 @@ body{
     background-color: gold;
     font-family: "Poppins", sans-serif;
 }
+
 .container{
-    width: 500px;
+    width: 700px;
     height: auto;
     background-color: white;
     border: 2px solid black;
@@ -17,7 +18,7 @@ body{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 10px;
     position: relative;
-    /* overflow: hidden; */
+    overflow: hidden;
 
     padding-bottom:100px ;
 }
@@ -75,7 +76,7 @@ body{
     letter-spacing: 2px;
     font-size: 14px;
     border-radius: 5px;
-
+ 
     
 
 }
@@ -191,4 +192,41 @@ input[type="range"]::-moz-range-track {
 
  .preset_color_box:hover{
     transform: translateY(-5px);
+}
+#deleteButton {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: red;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+#preview_background{
+    width: 250px;
+    height: 150px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #ddd;
+   
+}
+#file_pop{
+    display: none;
+}
+.image_control button{
+
+    margin: 20px 0px 0px 0px;
+ 
+  
+    transition: all linear 0.5s;
+   
+
+
+}
+#delete_button{
+    display: none;
+}
+#background_control{
+    display: none;
 }
