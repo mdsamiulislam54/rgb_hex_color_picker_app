@@ -10,10 +10,13 @@ let blueRange = document.getElementById('blueRange')
 let customRange_1 = document.getElementById('customRange_1');
 let customRange_2 = document.getElementById('customRange_2');
 let customRange_3 = document.getElementById('customRange_3');
+let parent_preset_box= document.getElementById('parent_preset_box')
+
 
 
 
 //ALL ref=========end====
+
 window.onload= function(){
    
     let red = 255;
@@ -28,10 +31,18 @@ window.onload= function(){
     redRange.innerText=red
     greenRange.innerText=green
     blueRange.innerText=blue
+
+
+    presetBoxGenerate(parent_preset_box,hexColors)
   
 
 }
-
+/**
+ * all audio
+ */
+const  copySound = new Audio('/audio/click.wav')
+const  errorSound = new Audio('/audio/cow.wav')
+const  clickSound = new Audio('/audio/click.wav')
 
 //ALL funtion =================start=========================
 
@@ -120,6 +131,12 @@ change_color_btn.addEventListener('click',()=>{
     customRange_1.value=color.red
     customRange_2.value=color.green
     customRange_3.value=color.blue
+
+    //sound 
+    clickSound.currentTime=0
+    
+    clickSound.volume=0.5
+    clickSound.play()
   
 
     
@@ -133,7 +150,11 @@ copyButton.addEventListener('click', () => {
     const hexValue = hex_input_box.value; 
     const rgbValue = rgb_input_box.value;  
     if (checkHex && checkRgb) {
+        errorSound.currentTime=0
+        errorSound.volume=0.3
+        errorSound.play()
         alert('Please select either HEX or RGB, not both.');
+      
         return; // Exit the function to prevent further execution
     }
 
@@ -155,6 +176,7 @@ copyButton.addEventListener('click', () => {
     // If neither checkbox is selected, show an alert message
     if (!checkHex && !checkRgb) {
         alert('Please select a checkbox.');
+       
     }
 });
 
@@ -169,8 +191,10 @@ hex_input_box.addEventListener('keyup',(e)=>{
         redRange.innerText=parseInt(value.substring(0,2),16)
         greenRange.innerText=parseInt(value.substring(2,4),16)
         blueRange.innerText=parseInt(value.substring(4),16)
+    
+       
     }
-
+ 
    
 })
 
@@ -206,3 +230,72 @@ function isValid (color){
     return /^[0-9A-Fa-f]{6}$/.test(color);
 }
 //hex color check function===end======
+
+// preset color array
+const hexColors = [
+    '#FF5733', // Bright Orange
+    '#33FF57', // Lime Green
+    '#3357FF', // Bright Blue
+    '#FF33A6', // Hot Pink
+    '#FFD700', // Gold
+    '#FF8C00', // Dark Orange
+    '#800080', // Purple
+    '#00FF00', // Green
+    '#FF4500', // Orange Red
+    '#8B4513', // Saddle Brown
+    '#00CED1', // Dark Turquoise
+    '#4682B4', // Steel Blue
+    '#4B0082', // Indigo
+    '#FFFF00', // Yellow
+    '#708090', // Slate Gray
+    '#FFB6C1', // Light Pink
+    '#20B2AA', // Light Sea Green
+    '#A52A2A'  // Brown
+];
+function presetColorBoxGenerate(color){
+    const div = document.createElement('div')
+    div.className='preset_color_box'
+    // div.setAttribute('data-color', color)
+    div.style.backgroundColor=color
+    div.setAttribute('data-color', color)
+    div.addEventListener('click',()=>{
+        presetColorCodeCopy(color)
+        toastMessage(color.slice(2))
+        copySound.currentTime=0
+        copySound.volume=0.5
+        copySound.play()
+     
+      
+    })
+    return div
+}
+
+/**
+ * preset color box generate
+ * @param {HTMLElement} parent 
+ * @param {Array} color 
+ */
+function presetBoxGenerate(parent,colors){
+    colors.forEach(color => {
+        const colorbox= presetColorBoxGenerate(color)
+        parent.appendChild(colorbox)
+    });
+
+  
+}
+
+
+/**
+ * preset color box color code copy event
+ */
+function presetColorCodeCopy(color){
+    navigator.clipboard.writeText(color)
+    
+    
+}
+
+
+
+
+
+
